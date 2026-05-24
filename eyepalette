@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Eye Palette</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="product-pagina">
+      <img src="assetss/Product.02.png" alt="Eye Palette" class="product02" />
+      <h1>VOID Eye Palette</h1>
+      <p class="description">Vier matte aardetinten voor een veelzijdige ooglook.</p>
+      <a href="shop.html" class="button">Koop nu</a>
+    </div>
+  </body>
+</html>
