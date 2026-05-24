@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VOID – Cart</title>
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/shop.css" />
+  </head>
+  <body>
+    <h1>VOID</h1>
+    <h2>WINKELMANDJE</h2>
+    <a href="shop.html">← Terug</a>
+    <section id="cart-items"></section>
+    <p id="cart-total"></p>
+    <p id="cart-empty"></p>
+
+    <script>
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const section = document.querySelector("#cart-items");
+      const total = document.querySelector("#cart-total");
+      const empty = document.querySelector("#cart-empty");
+
+      if (cart.length === 0) {
+        empty.textContent = "Je winkelmandje is leeg.";
+      } else {
+        let som = 0;
+        cart.forEach((item) => {
+          som += item.price * item.quantity;
+          const article = document.createElement("article");
+          article.classList.add("shop-item");
+          article.innerHTML = `
+            <img src="${item.image}" alt="${item.name}" />
+            <h3>${item.name}</h3>
+            <p>€${item.price} × ${item.quantity}</p>
+            <button class="btn-remove" data-id="${item.id}">Verwijder</button>
+          `;
+          section.appendChild(article);
+        });
+        total.textContent = `Totaal: €${som}`;
+
+        document.querySelectorAll(".btn-remove").forEach((btn) => {
+          btn.addEventListener("click", (e) => {
+            const id = parseInt(e.target.dataset.id);
+            const updated = cart.filter((i) => i.id !== id);
+            localStorage.setItem("cart", JSON.stringify(updated));
+            location.reload();
+          });
+        });
+      }
+    </script>
+  </body>
+</html>
