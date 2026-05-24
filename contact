@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/contact.css" />
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin=""/>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin=""></script>
+</head>
+
+<body>
+
+  <header>
+      <h1>VOID</h1>
+      <h2>OUR VISION</h2>
+      <p>
+        Stilte in plaats van ruis. Ruimte in plaats van lagen. Bij VOID draait
+        alles om wat er al is. Geen make-up, alleen tools die jouw natuurlijke
+        vormen laten spreken. Hier krijgt jouw gezicht de ruimte om te
+        schitteren.
+      </p>
+      <p>Pure essentie. Absolute precisie.</p>
+      <a href="shop.html" class="cta-button">SHOP NU</a>
+  </header>
+
+  <main>
+
+    <section class="contacteren">
+      <h1>Contact</h1>
+
+      <form>
+        <label for="firstname">Voornaam</label>
+        <input id="firstname" name="firstname" type="text" required>
+
+        <label for="lastname">Achternaam</label>
+        <input id="lastname" name="lastname" type="text" required>
+
+        <label for="email">E-mail adress</label>
+        <input id="email" name="email" type="email" required>
+
+        <label for="subject">Ik heb een vraag over:</label>
+        <select id="subject" name="subject">
+          <option value="retour">Retourneren</option>
+          <option value="order">Mijn Bestelling</option>
+          <option value="account">Mijn account & details</option>
+          <option value="other">Andere</option>
+        </select>
+
+        <label for="message">Beschrijf je vraag hier</label>
+        <textarea id="message" name="message" rows="5"></textarea>
+
+        <button type="submit">Bevestig</button>
+      </form>
+    </section>
+
+    <section class="locatiemap">
+      <h2>Locatie</h2>
+      <div id="map"></div>
+    </section>
+
+  </main>
+
+  <footer></footer>
+
+  <script>
+    var map = L.map('map').setView([50.8503, 4.3517], 13);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    L.marker([50.8503, 4.3517]).addTo(map);
+    L.marker([50.8600, 4.3700]).addTo(map);
+  </script>
+
+</body>
+</html>
