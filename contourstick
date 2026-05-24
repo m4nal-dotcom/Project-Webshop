@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contour Stick</title>
+   <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>VOID</h1>
+      <h2>OUR VISION</h2>
+      <p>
+        Stilte in plaats van ruis. Ruimte in plaats van lagen. Bij VOID draait
+        alles om wat er al is. Geen make-up, alleen tools die jouw natuurlijke
+        vormen laten spreken. Hier krijgt jouw gezicht de ruimte om te
+        schitteren.
+      </p>
+      <p>Pure essentie. Absolute precisie.</p>
+    </header>
+    <div class="product-pagina">
+      <img src="assetss/Product.05.png" alt="Contour Stick" class="product05" />
+      <h1>VOID Contour Stick</h1>
+      <p class="description">Blendbare contourstick voor precieze definitie.</p>
+      <a href="shop.html" class="button">Koop nu</a>
+    </div>
+  </body>
+</html>
