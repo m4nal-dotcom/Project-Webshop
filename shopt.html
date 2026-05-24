@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VOID – Cart</title>
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/shop.css" />
+  </head>
+  <body>
+    <h1>VOID</h1>
+    <h2>WINKELMANDJE</h2>
+    <a href="shop.html">← Terug</a>
+    <section id="cart-items"></section>
+    <p id="cart-total"></p>
+    <p id="cart-empty"></p>
+
+    <script>
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const section = document.querySelector("#cart-items");
+      const total = document.querySelector("#cart-total");
+      const empty = document.querySelector("#cart-empty");
+
+      if (cart.length === 0) {
+        empty.textContent = "Je winkelmandje is leeg.";
+      } else {
+        let som = 0;
+        cart.forEach((item) => {
+          som += item.price * item.quantity;
+          const article = document.createElement("article");
+          article.classList.add("shop-item");
+          article.innerHTML = `
+            <img src="${item.image}" alt="${item.name}" />
+            <h3>${item.name}</h3>
+            <p>€${item.price} × ${item.quantity}</p>
+            <button class="btn-remove" data-id="${item.id}">Verwijder</button>
+          `;
+          section.appendChild(article);
+        });
+        total.textContent = `Totaal: €${som}`;
+
+        document.querySelectorAll(".btn-remove").forEach((btn) => {
+          btn.addEventListener("click", (e) => {
+            const id = parseInt(e.target.dataset.id);
+            const updated = cart.filter((i) => i.id !== id);
+            localStorage.setItem("cart", JSON.stringify(updated));
+            location.reload();
+          });
+        });
+      }
+    </script>
+  </body>
+</html><!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VOID – Cart</title>
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/shop.css" />
+  </head>
+  <body>
+    <h1>VOID</h1>
+    <h2>WINKELMANDJE</h2>
+    <a href="shop.html">← Terug</a>
+    <section id="cart-items"></section>
+    <p id="cart-total"></p>
+    <p id="cart-empty"></p>
+
+    <script>
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const section = document.querySelector("#cart-items");
+      const total = document.querySelector("#cart-total");
+      const empty = document.querySelector("#cart-empty");
+
+      if (cart.length === 0) {
+        empty.textContent = "Je winkelmandje is leeg.";
+      } else {
+        let som = 0;
+        cart.forEach((item) => {
+          som += item.price * item.quantity;
+          const article = document.createElement("article");
+          article.classList.add("shop-item");
+          article.innerHTML = `
+            <img src="${item.image}" alt="${item.name}" />
+            <h3>${item.name}</h3>
+            <p>€${item.price} × ${item.quantity}</p>
+            <button class="btn-remove" data-id="${item.id}">Verwijder</button>
+          `;
+          section.appendChild(article);
+        });
+        total.textContent = `Totaal: €${som}`;
+
+        document.querySelectorAll(".btn-remove").forEach((btn) => {
+          btn.addEventListener("click", (e) => {
+            const id = parseInt(e.target.dataset.id);
+            const updated = cart.filter((i) => i.id !== id);
+            localStorage.setItem("cart", JSON.stringify(updated));
+            location.reload();
+          });
+        });
+      }
+    </script>
+  </body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/contact.css" />
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin=""/>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin=""></script>
+</head>
+
+<body>
+
+  <header>
+      <h1>VOID</h1>
+      <h2>OUR VISION</h2>
+      <p>
+        Stilte in plaats van ruis. Ruimte in plaats van lagen. Bij VOID draait
+        alles om wat er al is. Geen make-up, alleen tools die jouw natuurlijke
+        vormen laten spreken. Hier krijgt jouw gezicht de ruimte om te
+        schitteren.
+      </p>
+      <p>Pure essentie. Absolute precisie.</p>
+      <a href="shop.html" class="cta-button">SHOP NU</a>
+  </header>
+
+  <main>
+
+    <section class="contacteren">
+      <h1>Contact</h1>
+
+      <form>
+        <label for="firstname">Voornaam</label>
+        <input id="firstname" name="firstname" type="text" required>
+
+        <label for="lastname">Achternaam</label>
+        <input id="lastname" name="lastname" type="text" required>
+
+        <label for="email">E-mail adress</label>
+        <input id="email" name="email" type="email" required>
+
+        <label for="subject">Ik heb een vraag over:</label>
+        <select id="subject" name="subject">
+          <option value="retour">Retourneren</option>
+          <option value="order">Mijn Bestelling</option>
+          <option value="account">Mijn account & details</option>
+          <option value="other">Andere</option>
+        </select>
+
+        <label for="message">Beschrijf je vraag hier</label>
+        <textarea id="message" name="message" rows="5"></textarea>
+
+        <button type="submit">Bevestig</button>
+      </form>
+    </section>
+
+    <section class="locatiemap">
+      <h2>Locatie</h2>
+      <div id="map"></div>
+    </section>
+
+  </main>
+
+  <footer></footer>
+
+  <script>
+    var map = L.map('map').setView([50.8503, 4.3517], 13);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    L.marker([50.8503, 4.3517]).addTo(map);
+    L.marker([50.8600, 4.3700]).addTo(map);
+  </script>
+
+</body>
+</html>
+
+
+const shopItems = [
+  { id: 1, image: "assetss/Product.01.png", name: "VOID Sculpted Mirror", description: "Een luxe handspiegel.", price: 29, link: "sculptedmirror.html" },
+  { id: 2, image: "assetss/Product.02.png", name: "VOID Eye Palette", description: "Vier matte aardetinten.", price: 34, link: "eyepalette.html" },
+  { id: 3, image: "assetss/Product.03.png", name: "VOID Fluid Foundation", description: "Gewichtloze foundation.", price: 42, link: "fluidfoundation.html" },
+  { id: 4, image: "assetss/Product.04.png", name: "VOID Velvet Blush", description: "Compacte poederblush.", price: 26, link: "velvetblush.html" },
+  { id: 5, image: "assetss/Product.05.png", name: "VOID Contour Stick", description: "Blendbare contourstick.", price: 22, link: "contourstick.html" },
+  { id: 6, image: "assetss/Product.06.png", name: "VOID Concealer", description: "Rijke concealer.", price: 31, link: "concealer.html" },
+  { id: 7, image: "assetss/Product.07.png", name: "VOID Lip Veil", description: "Stralende lipgloss.", price: 19, link: "lipveil.html" },
+];
+
+const shopSection = document.querySelector("#shop");
+if (shopSection) {
+  shopItems.forEach((item) => {
+    const article = document.createElement("article");
+    article.classList.add("shop-item");
+    article.innerHTML = `
+      <a href="${item.link}"><img src="${item.image}" alt="${item.name}" /></a>
+      <h3>${item.name}</h3>
+      <p>${item.description}</p>
+      <p>€${item.price}</p>
+      <button class="btn-cart" data-id="${item.id}">Winkelmandje</button>
+      <button class="btn-wishlist" data-id="${item.id}">♡ Wishlist</button>
+    `;
+    shopSection.appendChild(article);
+  });
+}
+
+document.addEventListener("click", (e) => {
+  if (e.target.classList.contains("btn-cart")) {
+    const id = parseInt(e.target.dataset.id);
+    const item = shopItems.find((i) => i.id === id);
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const existing = cart.find((i) => i.id === id);
+    if (existing) { existing.quantity += 1; } else { cart.push({ ...item, quantity: 1 }); }
+    localStorage.setItem("cart", JSON.stringify(cart));
+    alert(`${item.name} toegevoegd!`);
+  }
+  if (e.target.classList.contains("btn-wishlist")) {
+    const id = parseInt(e.target.dataset.id);
+    const item = shopItems.find((i) => i.id === id);
+    const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+    if (!wishlist.find((i) => i.id === id)) {
+      wishlist.push(item);
+      localStorage.setItem("wishlist", JSON.stringify(wishlist));
+    }
+    alert(`${item.name} in wishlist!`);
+  }<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lip Veil</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>VOID</h1>
+      <h2>OUR VISION</h2>
+      <p>
+        Stilte in plaats van ruis. Ruimte in plaats van lagen. Bij VOID draait
+        alles om wat er al is. Geen make-up, alleen tools die jouw natuurlijke
+        vormen laten spreken. Hier krijgt jouw gezicht de ruimte om te
+        schitteren.
+      </p>
+      <p>Pure essentie. Absolute precisie.</p>
+    </header>
+    <div class="product-pagina">
+      <img src="assetss/Product.07.png" alt="Lip Veil" class="product07" />
+      <h1>VOID Lip Veil</h1>
+      <p class="description">Stralende lipgloss met verzorgend effect.</p>
+      <a href="shop.html" class="button">Koop nu</a>
+    </div>
+  </body>
+</html>
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product01</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>VOID</h1>
+      <h2>OUR VISION</h2>
+      <p>
+        Stilte in plaats van ruis. Ruimte in plaats van lagen. Bij VOID draait
+        alles om wat er al is. Geen make-up, alleen tools die jouw natuurlijke
+        vormen laten spreken. Hier krijgt jouw gezicht de ruimte om te
+        schitteren.
+      </p>
+      <p>Pure essentie. Absolute precisie.</p>
+    </header>
+    <div class="eyepalette">
+      <img src="./assetss/Product.01.png" alt="Eye Palette" class="product01" />
+
+      <h1>VOID Eye Palette</h1>
+
+      <p class="description"></p>
+
+      <a href="#" class="button">Koop nu</a>
+    </div>
+  </body>
+</html>
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/product.css" />
+    <link rel="stylesheet" href="css/shop.css" />
+    <title>void</title>
+  </head>
+
+  <body>
+    <h1>VOID</h1>
+    <h2>SHOP</h2>
+
+    <div class="rechtmenu">
+      <aside class="wishlist">
+        <h3><a href="wishlist.html">Wishlist</a></h3>
+      </aside>
+
+      <aside class="cart">
+        <h3><a href="cart.html">Cart</a></h3>
+      </aside>
+
+      <aside class="contact">
+        <h3><a href="contact.html">Contact</a></h3>
+      </aside>
+    </div>
+
+    <!-- DYNAMISCHE SHOP -->
+    <section id="shop"></section>
+    
+    <script src="javascript/shop.js"></script>
+  </body>
+</html>
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Velvet Blush</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>VOID</h1>
+      <h2>OUR VISION</h2>
+      <p>
+        Stilte in plaats van ruis. Ruimte in plaats van lagen. Bij VOID draait
+        alles om wat er al is. Geen make-up, alleen tools die jouw natuurlijke
+        vormen laten spreken. Hier krijgt jouw gezicht de ruimte om te
+        schitteren.
+      </p>
+      <p>Pure essentie. Absolute precisie.</p>
+    </header>
+    <div class="product-pagina">
+      <img src="assetss/Product.04.png" alt="Velvet Blush" class="product04" />
+      <h1>VOID Velvet Blush</h1>
+      <p class="description">Compacte poederblush voor een natuurlijke glow.</p>
+      <a href="shop.html" class="button">Koop nu</a>
+    </div>
+  </body>
+</html>
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VOID – Wishlist</title>
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/shop.css" />
+  </head>
+  <body>
+    <h1>VOID</h1>
+    <h2>WISHLIST</h2>
+    <a href="shop.html">← Terug</a>
+    <section id="wishlist-items"></section>
+    <p id="wishlist-empty"></p>
+
+    <script>
+      const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+      const section = document.querySelector("#wishlist-items");
+      const empty = document.querySelector("#wishlist-empty");
+
+      if (wishlist.length === 0) {
+        empty.textContent = "Je wishlist is leeg.";
+      } else {
+        wishlist.forEach((item) => {
+          const article = document.createElement("article");
+          article.classList.add("shop-item");
+          article.innerHTML = `
+            <img src="${item.image}" alt="${item.name}" />
+            <h3>${item.name}</h3>
+            <p>${item.description}</p>
+            <p>€${item.price}</p>
+            <button class="btn-remove" data-id="${item.id}">Verwijder</button>
+          `;
+          section.appendChild(article);
+        });
+
+        document.querySelectorAll(".btn-remove").forEach((btn) => {
+          btn.addEventListener("click", (e) => {
+            const id = parseInt(e.target.dataset.id);
+            const updated = wishlist.filter((i) => i.id !== id);
+            localStorage.setItem("wishlist", JSON.stringify(updated));
+            location.reload();
+          });
+        });
+      }
+    </script>
+  </body>
+</html>
