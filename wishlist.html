@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VOID – Wishlist</title>
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/shop.css" />
+  </head>
+  <body>
+    <h1>VOID</h1>
+    <h2>WISHLIST</h2>
+    <a href="shop.html">← Terug</a>
+    <section id="wishlist-items"></section>
+    <p id="wishlist-empty"></p>
+
+    <script>
+      const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+      const section = document.querySelector("#wishlist-items");
+      const empty = document.querySelector("#wishlist-empty");
+
+      if (wishlist.length === 0) {
+        empty.textContent = "Je wishlist is leeg.";
+      } else {
+        wishlist.forEach((item) => {
+          const article = document.createElement("article");
+          article.classList.add("shop-item");
+          article.innerHTML = `
+            <img src="${item.image}" alt="${item.name}" />
+            <h3>${item.name}</h3>
+            <p>${item.description}</p>
+            <p>€${item.price}</p>
+            <button class="btn-remove" data-id="${item.id}">Verwijder</button>
+          `;
+          section.appendChild(article);
+        });
+
+        document.querySelectorAll(".btn-remove").forEach((btn) => {
+          btn.addEventListener("click", (e) => {
+            const id = parseInt(e.target.dataset.id);
+            const updated = wishlist.filter((i) => i.id !== id);
+            localStorage.setItem("wishlist", JSON.stringify(updated));
+            location.reload();
+          });
+        });
+      }
+    </script>
+  </body>
+</html>
